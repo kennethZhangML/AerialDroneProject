@@ -21,13 +21,11 @@ base_dir = "C:/Users/kzhan/Desktop/segmentation_full_body_mads_dataset_1192_img"
 images_path = os.path.join(base_dir + "/images/")
 masks_path = os.path.join(base_dir + "/masks/")
 
-@builtin_function_or_method
 def sort_alpha(images):
     convert = lambda text: int(text) if text.isdigit() else text.lower()
     alpha_key = lambda key: [convert (c) for c in re.split('([0-9]+)', key)]
     return sorted(images, key = alpha_key)
 
-@builtin_function_or_method
 def load_data(path_images, path_masks):
     images, masks = os.listdir(path_images), os.listdir(path_masks)
     images_list, masks_list = [], []
@@ -45,7 +43,6 @@ def load_data(path_images, path_masks):
     
     return images_list, masks_list
 
-@Model
 def UNet_Network():
     inputs = tf.keras.Input(shape = (256, 256, 3))
 
